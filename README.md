@@ -98,5 +98,20 @@ kubectl get pods --namespace="kube-system"
 
 for example : kube-registry-v0-17vj5
 ```
+Next you'll use the Port-forward kubectl command :
+
+``` 
+kubectl port-forward --namespace="kube-system" <theRegistryPOD> 5000:5000 &
+```
+
+That will map the local 5000 port to the 5000 port of your POD so now you'r able on your local machine to do :
+
+```
+$ docker pull ubuntu 
+$ docker tag ubuntu localhost:5000/ubuntu
+$ docker push localhost:5000/ubuntu
+``` 
+
+As you did it on the Nodes !
 
 
