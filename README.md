@@ -97,7 +97,7 @@ First you need to retrieve the kube-registry POD :
 ``` 
 kubectl get pods --namespace="kube-system"
 
-for example find : kube-registry-v0-17vj5
+for example found : kube-registry-v0-17vj5 in my cluster
 ```
 Next you'll use the Port-forward kubectl command :
 
