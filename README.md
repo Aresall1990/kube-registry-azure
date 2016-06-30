@@ -27,7 +27,7 @@ $ echo "mystorageaccountkey" | base64
 bXlzdG9yYWdlYWNjb3VudGtleQo=
 ``` 
 
-Then you will modify the **azure-storage-credentials.yml** by replacing the correct "base64 hash" with the corresponding key and name:
+Then you need to modify the **azure-storage-credentials.yml** by replacing the correct "base64 hash" with the corresponding key and name:
 
 ```
 apiVersion: v1
