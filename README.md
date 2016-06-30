@@ -15,7 +15,8 @@ You need to create that Storage Account in a separate "Ressource Group" than you
 The next step is to create a secret that will provide the StorageAccountName and the StorageAccountKey to your controller, whitout exposing anything in your YML.
 
 To do that, you need to hash the StorageAccountKey and the StorageAccountName with a Base64
-You find that informations on the Azure portal > Storage Account > Settings > Keys
+
+> You'll find that informations on the **Azure portal > Storage Account > Settings > Keys**
 
 For example : 
 
