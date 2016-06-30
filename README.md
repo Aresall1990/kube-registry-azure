@@ -6,7 +6,7 @@ This repo contains a fully functionnal solution to deploy a **Private Docker Reg
 
 To use the Azure Blob Storage as a Docker Registry, the first step is to create a Storage Account on your Azure Subscription.
 
-**Note:** The **Premium Storage Account** is not working for the moment with the Docker Registry. Only the Standard one.
+> **Note:** The **Premium Storage Account** is not working for the moment with the Docker Registry. Only the Standard one.
 
 You need to create that Storage Account in a separate "Ressource Group" than your Kubernetes cluster, to ensure the safety of your images.
 
