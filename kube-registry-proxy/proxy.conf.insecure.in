@@ -1,0 +1,17 @@
+global
+  maxconn 1024
+
+defaults
+  mode http
+  retries 5
+  option redispatch
+  timeout client 30s
+  timeout server 30s
+  timeout connect 30s
+
+frontend forwarder
+  bind *:%FWDPORT%
+  default_backend registry
+
+backend registry
+  server kube-registry %HOST%:%PORT%
