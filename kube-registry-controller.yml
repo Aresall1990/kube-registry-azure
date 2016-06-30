@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: kube-registry-v0
+  namespace: kube-system
+  labels:
+    k8s-app: kube-registry
+    version: v0
+    kubernetes.io/cluster-service: "true"
+spec:
+  replicas: 1
+  selector:
+    k8s-app: kube-registry
+    version: v0
+  template:
+    metadata:
+      labels:
+        k8s-app: kube-registry
+        version: v0
+        kubernetes.io/cluster-service: "true"
+    spec:
+      containers:
+      - name: registry
+        image: registry:2.4.1
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: REGISTRY_HTTP_ADDR
+          value: :5000
+        - name: REGISTRY_STORAGE
+          value: "azure"
+        - name: REGISTRY_STORAGE_AZURE_ACCOUNTNAME
+          valueFrom:
+            secretKeyRef:
+              name: azure-storage-key
+              key: storagename
+        - name: REGISTRY_STORAGE_AZURE_ACCOUNTKEY
+          valueFrom:
+            secretKeyRef:
+              name: azure-storage-key
+              key: storagekey
+        - name: REGISTRY_STORAGE_AZURE_CONTAINER
+          value: registry
+        ports:
+        - containerPort: 5000
+          name: registry
+          protocol: TCP
