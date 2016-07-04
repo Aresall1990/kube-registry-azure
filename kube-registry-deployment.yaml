@@ -1,8 +1,11 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: kube-registry-v0
+  name: kube-registry
   namespace: kube-system
+  labels:
+    k8s-app: kube-registry
+    version: v0
 spec:
   replicas: 1
   template:
@@ -10,7 +13,6 @@ spec:
       labels:
         k8s-app: kube-registry
         version: v0
-        kubernetes.io/cluster-service: "true"
     spec:
       containers:
       - name: registry
@@ -28,14 +30,17 @@ spec:
           valueFrom:
             secretKeyRef:
               name: azure-storage-key
-              key: storagename
+              key: storageaccount
         - name: REGISTRY_STORAGE_AZURE_ACCOUNTKEY
           valueFrom:
             secretKeyRef:
               name: azure-storage-key
               key: storagekey
         - name: REGISTRY_STORAGE_AZURE_CONTAINER
-          value: registry
+          valueFrom:
+            secretKeyRef:
+              name: azure-storage-key
+              key: storagecontainer
         ports:
         - containerPort: 5000
           name: registry
