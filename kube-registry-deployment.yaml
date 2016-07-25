@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: registry
-        image: registry:2.5.0-rc.1
+        image: registry:2.5.0-rc.2
         resources:
           limits:
             cpu: 100m
